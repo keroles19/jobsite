@@ -1,0 +1,23 @@
+﻿@using final.Models;
+@using Microsoft.AspNet.Identity;
+@{
+    ViewBag.Title = "Change Your Password";
+}
+<p class="text-success">@ViewBag.StatusMessage</p>
+<div style="margin-bottom:110px;" class="row">
+    <div class="col-md-12">
+        @if (ViewBag.HasLocalPassword)
+        {
+            @Html.Partial("_ChangePasswordPartial")
+        }
+        else
+        {
+            @Html.Partial("_SetPasswordPartial")
+        }
+
+   
+    </div>
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

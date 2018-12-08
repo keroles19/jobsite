@@ -1,0 +1,38 @@
+﻿@model IEnumerable<final.Models.Catig>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>All Catigeries</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table style="margin-bottom:400px" class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Details)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.Raw(HttpUtility.HtmlDecode(Html.DisplayFor(modelItem => item.Details).ToString()))
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+        </td>
+    </tr>
+}
+
+</table>

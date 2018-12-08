@@ -1,0 +1,69 @@
+﻿@model final.Models.jobs
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+@if (!User.Identity.IsAuthenticated)
+{
+    <div class="alert-warning" style="padding-top:0;margin-top:0;height:40px; border-radius:10px;">
+        <span style=" font-size:x-large; margin-left:70px; padding:10px;"> @Html.ActionLink("Login or Create Account ","Login","Account")to aplly for This Job </span>
+    </div>
+}
+
+<div >
+	<hr />
+    <dl class="dl-horizontal">
+        <dt>
+            <label class="control-label col-md-2">Compeny Name</label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CompanyName)
+        </dd>
+
+        <dt>
+            <label class="control-label col-md-2">Address for Company</label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AddressCompany)
+        </dd>
+        <dt>
+            <label class="control-label col-md-2">Job Name</label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.name)
+        </dd>
+
+        <dt>
+        <dt>
+            <label class="control-label col-md-2">Details for Job</label>
+        </dt>
+
+        <dd>
+            @Html.Raw(HttpUtility.HtmlDecode(Html.DisplayFor(model => model.details).ToString()))
+        </dd>
+        <dt>
+            <label class="control-label col-md-2">Picture</label>
+        </dt>
+
+        <dd>
+          <img src="~/uploaded/@Model.image" alt="no picture for job" class="thumbnail" style="width:90px;height:120px;margin-bottom:70px;" />
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @if(User.Identity.IsAuthenticated && User.IsInRole("employee"))
+    { 
+        
+    <button style="margin-left:50px" class="button-a">@Html.ActionLink("Apply For Job", "Apply", new { id = Model.id }, htmlAttributes: new { @class = "activ" })</button>
+    <button style="margin-left:20px" class="button-a">@Html.ActionLink("Cancel", "Index", null, htmlAttributes: new { @class = "activ" })</button>
+    }
+ 
+</p>
+
+<link href="~/Content/Site.css" rel="stylesheet" />

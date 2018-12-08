@@ -1,0 +1,55 @@
+﻿@model IEnumerable<final.Models.ApplayForJob>
+
+@{
+    ViewBag.Title = "Jobs";
+}
+@if (ViewBag.ms!=null)
+{ 
+<div style="margin-bottom:400px;" class="alert alert-danger" >
+    <span style="font-size:x-large;margin-right:30px;" id="view">@ViewBag.ms</span>
+</div>
+}
+else
+{
+    <div style=" margin-bottom: 10px; text-align: center; font-size:medium" class="col-md-3 thumbnail">
+        <span style="color:red;">All Jobs applied </span>
+    </div>
+<table class="table" style="margin-top:30px;margin-bottom:300px;">
+    <tr>
+        <th>
+           <label>Name of Job</label>
+        </th>
+        <th>
+           <label>Name of Company</label>
+        </th>
+        <th>
+           <label>Address for Company</label>
+        </th>
+        <th>
+           <label>Details for Job</label>
+        </th>
+        <th>
+
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.job.name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.job.CompanyName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.job.AddressCompany)
+        </td>
+        <td>
+            @Html.Raw(HttpUtility.HtmlDecode(item.job.details).ToString())
+        </td>
+       
+    </tr>
+}
+
+</table>
+}

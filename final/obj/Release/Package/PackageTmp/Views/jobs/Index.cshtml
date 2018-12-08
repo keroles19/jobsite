@@ -1,0 +1,75 @@
+﻿@model IEnumerable<final.Models.jobs>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@if (ViewBag.ms!=null)
+{
+    <div style=" height: 74px; text-align: center; margin-bottom: 350px; padding: 20px" class="alert-success">
+        <span style="font-size:larger;" id="view">@ViewBag.ms @Html.ActionLink(" Click here", "Create") To Add Your Job </span>
+    </div>
+}
+else {
+    
+    <div style=" height: 74px; text-align: center; padding: 20px" class="alert-success">
+        <span style="font-size:larger;" id="view">There are ALL job @Html.ActionLink(" Click here", "Create") To Add  Another Job  </span>
+    </div>
+    
+    
+<br />
+<table style="color: #59699d; margin-bottom: 300px;" class="table table-bordered">
+    <tr>
+        <th>
+            <label>Name of Compeny</label>
+        </th>
+        <th>
+            <label>Address for Compeny</label>
+        </th>
+        <th>
+             <label>Groub of Job</label>
+        </th>
+        <th>
+            <label>Name of Job</label>
+        </th>
+        <th>
+            <label >Details of Job</label>
+        </th>
+        <th>
+            <label >Pictur of Job</label>
+        </th>
+        <th>
+            <label >Setting</label>
+        </th>
+    </tr>
+
+@foreach (var item in Model)
+{
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.CompanyName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AddressCompany)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.catig.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.name)
+        </td>
+        <td>
+           @Html.Raw(HttpUtility.HtmlDecode(Html.DisplayFor(modelItem => item.details).ToString()))
+        <td>
+            <img src="~/uploaded/@item.image" alt="image" style="margin-left:10px;margin-top:10px; width:100px;height:120px;" class="thumbnail" />
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+            @*@Html.ActionLink("Details", "Details", new { id = item.id }) |*@
+            @Html.ActionLink("Delete", "Delete", new { id = item.id })
+        </td>
+    </tr>
+}
+
+</table>
+}

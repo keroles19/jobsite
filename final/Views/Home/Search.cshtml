@@ -1,0 +1,36 @@
+﻿@model IEnumerable<final.Models.jobs>
+@{
+    ViewBag.Title = "Search";
+}
+
+@if( ViewBag.report!= null)
+{
+    <div class="alert-info" style="margin-top:300px;text-align:center;height:120px ; color:#ff0000;font-size:50px;"border-radius:10px;">
+        <span>@ViewBag.report</span>
+    </div>
+}
+   else
+{
+    
+   <div class="panel panel-default" style="background-color:#70d4f5">
+        <h1 class="panel-heading" style="text-align:center;">Result for Searching</h1>
+        <div style="border-radius:100px;" class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-3 thumbnail" style="margin-left:20px; margin-bottom:30px; height:380px;">
+                <h4>@item.name</h4>
+                <p>
+                  @Html.Raw(HttpUtility.HtmlDecode(@item.details).ToString())
+                </p>
+                <img src="~/uploaded/@item.image" alt="image" style="width:90px;height:120px" /><br />
+                @if (User.Identity.IsAuthenticated)
+                {
+                    @Html.ActionLink("Details", "Details", new { id = @item.id }, new { @class = "btn btn-primary" })
+                }
+            </div>
+        }
+
+    </div>
+
+</div>
+}

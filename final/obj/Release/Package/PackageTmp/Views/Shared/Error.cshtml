@@ -1,0 +1,36 @@
+﻿@model System.Web.Mvc.HandleErrorInfo
+
+@{
+    ViewBag.Title = "Error";
+}
+
+
+@if(ViewBag.Error!=null)
+    
+{<div id="er" class="alert-danger" style="margin-bottom:290px">
+<h1 class="text-danger">Error.</h1>
+<h2 class="text-danger">ViewBag.Error</h2>
+</div>
+}
+
+else
+{ 
+
+<div id="er" class="alert-danger" style="margin-bottom:290px">
+<h1 class="text-danger">Error.</h1>
+<h2 class="text-danger">An error occurred while processing your request.</h2>
+</div>
+
+}
+<script>
+    $(function () {
+
+
+        $("#er").show(200);
+
+
+
+
+    });
+
+</script>

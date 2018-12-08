@@ -1,0 +1,96 @@
+﻿@model final.Models.ApplayForJob
+
+
+@{
+    ViewBag.Title = "Apply";
+}
+@using (Html.BeginForm("Apply","Home", FormMethod.Post, new { enctype = "multipart/form-data" })) 
+{
+     if(ViewBag.Mes!=null)
+     { 
+<div  id="info" class="alert-danger" style="margin-top:20px; margin-bottom:100px;height:40px;font-size:larger; text-align:center;padding-top:7px;  border-radius:7px;display:none">
+    <span >@ViewBag.Mes </span>
+</div>
+}
+
+
+<div class="alert alert-danger" id="err" style="display:none">
+    <span id="view"></span>
+</div> 
+    
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal" style="margin-bottom:300px">
+        <h4>ApplayForJob</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+
+        <div class="form-group">
+            <h3 style="color:#fa6800">upload your Cv To help Manager Know your information and skills about you</h3>
+            <div class="col-md-10">
+                <input type="file" id="picture" name="cvupload" class=" control-label col-md-2" />
+                @Html.ValidationMessageFor(model => model.Cv)
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Send" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+
+@section Script {
+
+
+<script>
+    $(function () {
+        $("#info").show(200);
+
+
+            $("#save").click(function () {
+                if ($("#picture").val() == "") {
+                    $("#err").fadeIn();
+                    $("#view").text("please select file");
+                    return false;
+                }
+
+                // check  extention for file
+                if ($("#picture").val() != "") {
+                    var filename = document.getElementById("picture").value;
+                    var extention = filename.substr(filename.lastIndexOf('.') + 1);
+                    var validation = ['txt', 'pdf', 'docx', 'doc'];
+                    if ($.inArray(extention, validation) == -1) {
+                        $("#err").fadeIn();
+                        $("#view").text("invaild extention of file ");
+                        return false;
+
+                    }
+
+                    //  check size for file
+
+                    var filesize = document.getElementById("picture").files[0].size / 1024 / 1024 ;
+                    if (filesize > 3) {
+                        $("#err").fadeIn();
+                        $("#view").text("size of file is larg");
+                        return false;
+
+                    }
+
+                }
+
+            });
+
+
+
+        });
+
+    </script>
+}
+
+
+

@@ -1,0 +1,60 @@
+﻿@model final.Models.jobs
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+
+<h3 class="alert-danger">Are you sure  want to delete this?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            <label>Name of Company</label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CompanyName)
+        </dd>
+        <dt>
+            <label>Address for Company</label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AddressCompany)
+        </dd>
+        <dt>
+            <label>Name of Job</label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.name)
+        </dd>
+        <dt>
+            <label>Details of Job</label>
+        </dt>
+        <dd>
+            @Html.Raw(HttpUtility.HtmlDecode(Html.DisplayFor(model => model.details).ToString()))
+        </dd>
+
+        <dt>
+            <label>Picture of Job</label>
+        </dt>
+        <dd>
+            <img src="~/uploaded/@Model.image" alt="reload" style="width:120px;height:120px" class="thumbnail" />
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

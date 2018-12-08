@@ -1,0 +1,44 @@
+﻿@model IEnumerable<final.Models.Catig>
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div style="margin-top:10px; background-color:#a4a3a3" class="jumbotron ">
+    <h2 >Welcome</h2>
+    <p>Welcome to the job search space of different types. 
+    You can post a job if you are a publisher. 
+    You can apply for the job if you are looking for a job.</p>
+    <p><a href="#" class="btn btn-primary btn-lg">More Details &raquo;</a></p>
+</div>
+@if (Session["T"] != null)
+{
+  <div class="alert-success" style="margin-right:20px; margin-bottom:30px;height:40px; ">
+    <span style="font-size:x-large;padding:10px;margin-left:20px;">@Session["T"]</span>
+    @{Session.Abandon();}
+</div>
+} 
+    @foreach (var item in Model)
+    {
+        <p>@ViewBag.Mes</p>
+     
+     <div style="background-color:inherit" class="panel panel-info">
+         <div class="alert-info" style="padding-top:0;margin-top:0;height:50px; border-radius:10px;">
+             <span style="color:blue; font-size:xx-large; margin-left:20px;" class="btn-block">@item.Name</span>
+         </div>
+        <div class="row">
+        @foreach (var subitem in item.jobs)
+       {
+     <div class="col-md-3 thumbnail" style="margin-left:20px; margin-bottom:4px;margin-top:4px; min-height:450px">
+       <img src="~/uploaded/@subitem.image" alt="image" style="height:250px;width:400px"/><br />
+        <h3>@subitem.name</h3>
+         <p>@subitem.catig.Details</p>
+        
+            @Html.ActionLink("Details", "Details", new { id = @subitem.id }, new { @class = "btn btn-primary" })
+    </div>
+       }
+         </div>
+        
+    </div>
+
+
+    }

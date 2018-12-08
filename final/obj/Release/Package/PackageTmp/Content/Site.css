@@ -1,0 +1,145 @@
+﻿body {
+    padding-top: 100px;
+    padding-bottom: 0px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+/* styles for validation helpers */
+.field-validation-error {
+    color: #b94a48;
+}
+
+.field-validation-valid {
+    display: none;
+}
+
+input.input-validation-error {
+    border: 1px solid #b94a48;
+}
+
+input[type="checkbox"].input-validation-error {
+    border: 0 none;
+}
+
+.validation-summary-errors {
+    color: #b94a48;
+}
+
+.validation-summary-valid {
+    display: none;
+}
+
+.activ
+{
+    color:#de1313;
+    font-size:medium;
+}
+
+.activ:hover{
+
+    text-decoration:none;
+    color:#940000;
+
+}
+
+
+.myfooter{
+    background-color:cornflowerblue;
+    padding-top:20px;
+    font-family:myFont;
+    text-align:justify;
+}
+.subfooter{
+    background-color:#0c5c82;
+    color:white;
+    padding:10px;
+    text-align:center;
+    
+}
+
+.myfooter a{
+    color:azure;
+}
+
+.myfooter p{
+    color:azure;
+}
+.myfooter h3,ul,p{
+    margin-bottom:20px;
+    font-family:myFont2;
+    list-style-type:none;
+}
+
+.logo-size
+{
+    width:100px;
+    height:90px;
+    margin-top:-7px;
+    border-radius:50%;
+    
+}
+
+.search{
+
+    margin-top: 10px;
+     margin-left: 20px;
+      height: 34px; 
+      width:140px; 
+      font-size: 14px;
+      line-height: 1.428571429; 
+      color: #555555; 
+       background-color:#b5e6e6;
+      border: 1px solid #cccccc;
+     border-radius: 4px;
+     color:white;
+      width:250px;
+
+}
+
+
+
+
+.searchName {
+    width: 130px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    background-color: white;
+    background-image: url('../Images/search.png');
+    background-repeat:no-repeat;
+    background-position:10px 10px;
+    padding:12px 20px 12px 12px;
+    transition:width 0.4s ease-in-out;
+
+}
+
+.searchName:focus{
+    width:100%;
+}
+
+.img-size{
+    font-size:90px;
+}
+
+.navbar-user{
+    padding:10px;
+    padding-bottom:0px;
+    width:350px;
+}
+
+@media (min-width: 992px){
+.col-md-3 {
+    width: 23%;
+}
+}

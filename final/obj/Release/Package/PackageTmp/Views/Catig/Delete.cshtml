@@ -1,0 +1,39 @@
+﻿@model final.Models.Catig
+
+@{
+    ViewBag.Title = "Delete";
+}
+<div style="border-radius:10px;" class="alert-danger">
+    <span style="padding:10px; font-size:x-large"> Are you sure  want to delete this?</span>
+</div>
+
+<div style="margin-bottom:370px;">
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Details)
+        </dt>
+
+        <dd>
+            @Html.Raw(HttpUtility.HtmlDecode(Html.DisplayFor(model => model.Details).ToString()))
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

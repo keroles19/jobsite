@@ -1,0 +1,130 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+        @Styles.Render("~/Content/css")
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body style="background-color:#eeeeee">
+    <div style="background-color:#2346a7"  class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button> 
+               <a href="~/Home"><img src="~/Images/logo.jpg" class="navbar-brand logo-size"/></a>
+                     @*@Html.ActionLink("Application name", "Index", "Home", null, new { @class = "navbar-brand", })*@</div>
+            <div style="font-size:larger;margin-top:10px;" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="~/Home">
+                            <i class="glyphicon glyphicon-home"></i>
+                            Home
+                        </a>
+                    </li>
+                    <li>
+                        <a href="~/Home/About">
+                            <i class="glyphico glyphicon-bookmark"></i>
+                            About
+                        </a>
+                    </li>
+                    <li>
+                        <a href="~/Home/Contact">
+                            <i class="glyphicon glyphicon-send" ></i>
+                            Contact
+                        </a>
+                    </li>
+                    @if (User.Identity.IsAuthenticated && User.IsInRole("employer"))
+                    { 
+                         
+                     <li>
+                         <a href="~/jobs/uersapplied">
+                             <i class="glyphicon glyphicon-circle-arrow-up"></i>
+                             User's Apllied
+                         </a>
+                     </li>
+                    }
+                    <li>
+                        @using (Html.BeginForm("Search", "Home", FormMethod.Get, new { @id = "Search" }))
+                        {
+                         
+                                <input type="text" name="word" class="search" placeholder="Search" autocomplete="off"/>
+                           <input type="submit" value="Search" class="btn" id="btn"/>
+                        }
+                    </li>
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        </div>
+         <hr />
+        
+        <!--   footer -->
+   
+
+        <footer class="myfooter" style="margin-top:200px;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4">
+                        <h3>
+                            <i class="glyphicon glyphicon-question-sign"></i>
+                           About
+                        </h3>                
+                        <p>
+                            job site helped to get your job 
+                        </p>
+                    </div>
+
+                    <div class="col-md-4">
+                        <h3>
+                            <i class="glyphicon glyphicon-globe"></i>
+                               another subject
+                        </h3>
+                        <ul>
+                            <li><a href="#"></a></li>
+                            <li><a href="#"></a></li>
+                            <li><a href="#"></a></li>
+                            <li><a href="#"></a></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-md-4">
+                        <h3>
+                            <i class="glyphicon glyphicon-envelope"></i>
+                            contact with me
+                        </h3>
+                        <ul>
+                            <li><a target="_blank" href="https://www.facebook.com/kerolesatef200">facebook</a></li>
+                            <li><a href="#">twiter</a></li>
+                            <li><a href="#">youtube</a></li>
+                            <li><a target="_blank"  href="https://www.gmail.com/kerolesatef200">gmail</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+            <div class="subfooter">
+                <span>جميع الحقوق محفوظة لموقع التوظيف -2018</span>
+            </div>
+        </footer>
+
+        <!--   end -->
+        
+
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    @RenderSection("script", required: false)
+</body>
+</html>
+

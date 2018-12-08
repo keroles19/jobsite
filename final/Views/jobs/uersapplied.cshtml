@@ -1,0 +1,58 @@
+﻿@model IEnumerable<final.Models.titlejobs>
+
+    @{
+    ViewBag.Title = "uers applied";
+    }
+
+    @if (ViewBag.ms!=null)
+{
+        <div style=" height: 74px; text-align: center; padding: 20px;margin-bottom:400px; " class="alert-success">
+            <span style="font-size:larger;" id="view">@ViewBag.ms</span>
+        </div>
+}
+
+else 
+    {     
+        <div style=" margin-bottom:10px; text-align: center; font-size:medium" class="col-md-3 thumbnail">
+            <span style="color:red;">All User applied for jobs </span>
+        </div>
+    
+    foreach (var item in Model)
+   {
+            <table margin-top:10px" class="table">
+                <tr>
+                    <th class=" h2" style="color:#ff6a00">@item.title</th>
+                </tr>
+                <tr>
+                    <th>
+                        User Name
+                    </th>
+
+                    <th>
+                        Email
+                    </th>
+                    <th>
+                        Download Cv
+                    </th>
+                </tr>
+                @foreach (var q in item.items)
+	  {
+                    <tr>
+                    <td>
+                            @q.user.UserName
+                        </td>
+                        <td>
+                            @q.user.Email
+                        </td>
+                        <td>
+                            @Html.ActionLink("download cv", "DownloadFile", new { id = q.user.Id}, htmlAttributes: new { id = "registerLink" })
+
+                        </td>
+                    </tr>
+
+	}
+
+            </table>
+    }
+}
+    
